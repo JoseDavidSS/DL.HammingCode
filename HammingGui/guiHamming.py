@@ -111,8 +111,8 @@ class MyGridLayout(GridLayout):
     def graphing(self, instance):
         checkParityValue = self.parityCheckBox.active
         print (checkParityValue)
-        
 
+        
 class MyApp(App):
     def build(self):
         return MyGridLayout()
