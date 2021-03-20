@@ -13,14 +13,23 @@ def errorCheckForP1 (hammingData):
     totalParity += hammingData[14]
     totalParity += hammingData[16]
 
-    if totalParity%2 == 0:
-        return error
-        print ("P1 es par, no hay error")
-
+    if par == True:
+        if totalParity%2 == 0:
+            print ("P1 es par, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P1 porque es impar")
+            return error
+    
     else:
-        error += 1
-        return error
-        print ("Hay error en P1")
+        if totalParity%2 != 0:
+            print ("P1 es impar, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P1 porque es par")
+            return error
 
 def errorCheckForP2 (hammingData):
     
@@ -36,14 +45,23 @@ def errorCheckForP2 (hammingData):
     totalParity += hammingData[13]
     totalParity += hammingData[14]
 
-    if totalParity%2 == 0:
-        return error
-        print ("P2 es par, no hay error")
-
+    if par == True:
+        if totalParity%2 == 0:
+            print ("P2 es par, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P2 porque es impar")
+            return error
+    
     else:
-        error += 1
-        return error
-        print ("Hay error en P2")
+        if totalParity%2 != 0:
+            print ("P2 es impar, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P2 porque es par")
+            return error
 
 def errorCheckForP3 (hammingData):
     
@@ -59,14 +77,23 @@ def errorCheckForP3 (hammingData):
     totalParity += hammingData[13]
     totalParity += hammingData[14]
 
-    if totalParity%2 == 0:
-        return error
-        print ("P3 es par, no hay error")
-
+    if par == True:
+        if totalParity%2 == 0:
+            print ("P3 es par, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P3 porque es impar")
+            return error
+    
     else:
-        error += 1
-        return error
-        print ("Hay error en P3")
+        if totalParity%2 != 0:
+            print ("P3 es impar, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P3 porque es par")
+            return error
 
 def errorCheckForP4 (hammingData):
     
@@ -82,14 +109,23 @@ def errorCheckForP4 (hammingData):
     totalParity += hammingData[13]
     totalParity += hammingData[14]
 
-    if totalParity%2 == 0:
-        return error
-        print ("P4 es par, no hay error")
-
+    if par == True:
+        if totalParity%2 == 0:
+            print ("P4 es par, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P4 porque es impar")
+            return error
+    
     else:
-        error += 1
-        return error
-        print ("Hay error en P4")
+        if totalParity%2 != 0:
+            print ("P4 es impar, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P4 porque es par")
+            return error
 
 def errorCheckForP5 (hammingData):
     
@@ -99,16 +135,26 @@ def errorCheckForP5 (hammingData):
     totalParity += hammingData[15]
     totalParity += hammingData[16]
 
-    if totalParity%2 == 0:
-        return error
-        print ("P5 es par, no hay error")
-
+    if par == True:
+        if totalParity%2 == 0:
+            print ("P5 es par, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P5 porque es impar")
+            return error
+    
     else:
-        error += 1
-        return error
-        print ("Hay error en P5")
+        if totalParity%2 != 0:
+            print ("P5 es impar, no hay error")
+            return error
+        else:
+            error += 1
+            print ("Hay error en P5 porque es par")
+            return error
 
 def calcularBitErroneo (hammingData):
+    bitErroneo = []
     bitErroneo.append(errorCheckForP1(hammingData))
     bitErroneo.append(errorCheckForP2(hammingData))
     bitErroneo.append(errorCheckForP3(hammingData))
@@ -132,8 +178,9 @@ def cambiarBit (posicion):
         print(hammingData)
         print("bit cambiado a 0")
     
-bitErroneo = []
-hammingData = [0,0,0,0,1,0,0,1,0,0,1,1,0,1,1,1,0]
+
+par = True
+hammingData = [1,1,1,1,1,0,0,0,1,0,0,1,1,0,1,1,1]
 print (len(hammingData))
     
     
