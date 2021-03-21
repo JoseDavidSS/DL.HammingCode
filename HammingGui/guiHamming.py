@@ -6,11 +6,14 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.checkbox import CheckBox
 from kivy.core.window import Window
-from prueba import *
+
+from HammingGui import data
+from graphGui import *
+
 
 # Set the app size
-Window.size = (900,900) #(x,y) lengths
-graficoActivo = False
+Window.size = (900,500) #(x,y) lengths
+
 
 class MyGridLayout(GridLayout):
     def __init__(self, **kwargs):
@@ -34,6 +37,11 @@ class MyGridLayout(GridLayout):
         self.titelGrid.add_widget(Label(text="Aplicación Hamming", font_size = 48))
 
         self.add_widget(self.titelGrid) # Add titelGrid to MyGridLayout
+
+
+        # Division Label
+        self.add_widget(Label(text="___________________________________________________________________________________________________________________________________________________________",
+                              font_size = 16))
 
         #Create body grid
         self.bodyGrid = GridLayout(
@@ -89,7 +97,7 @@ class MyGridLayout(GridLayout):
         
         #Create graphic grid first row
         self.graphicGrid.add_widget(Label(text="Graficando código NZRI:", font_size = 16))
-        self.graphingButton = Button(text="Graficar:", font_size=16)
+        self.graphingButton = Button(text="Graficar", font_size=16)
         self.graphingButton.bind(on_press = self.graphing) #Bond function
         self.graphicGrid.add_widget(self.graphingButton)
 
@@ -117,30 +125,34 @@ class MyGridLayout(GridLayout):
 
     # Graphing method
     def graphing(self, instance):
-        global graficoActivo
         checkParityValue = self.parityCheckBox.active
         print(checkParityValue)
-        graficoActivo = True
+        data.graficoActivo = 1
         MyApp().stop()
         #self.add_widget(prueba.IngresarNumero())
 
-
-
-        
 class MyApp(App):
     def build(self):
-        if graficoActivo == False:
+        print(data.graficoActivo)
+        if data.graficoActivo == 0:
             return MyGridLayout()
         else:
             return IngresarNumero()
 
-MyApp().run()
-
-def prueba():
-    print("Hola")
-    GraphApp.run()
+if __name__ == '__main__':
+    MyApp().run()
 
 MyApp().run()
+
+data.graficoActivo = 0
+print(data.graficoActivo)
+
+MyApp().run()
+
+if __name__ == '__main__':
+    MyApp().run()
+
+
 
 
 
