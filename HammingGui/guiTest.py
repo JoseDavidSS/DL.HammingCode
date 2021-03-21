@@ -6,6 +6,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.core.window import Window
 
+
 # Set the app size
 Window.size = (600,450) #(x,y) lengths
 

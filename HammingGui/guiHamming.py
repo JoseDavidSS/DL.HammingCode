@@ -6,9 +6,11 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.checkbox import CheckBox
 from kivy.core.window import Window
+from prueba import *
 
 # Set the app size
 Window.size = (900,900) #(x,y) lengths
+graficoActivo = False
 
 class MyGridLayout(GridLayout):
     def __init__(self, **kwargs):
@@ -82,19 +84,25 @@ class MyGridLayout(GridLayout):
             row_force_default = True,
             row_default_height = 30,
             col_force_default = True,
-            col_default_width = 225)
-        self.graphicGrid.cols = 4
+            col_default_width = 450)
+        self.graphicGrid.cols = 2
         
         #Create graphic grid first row
         self.graphicGrid.add_widget(Label(text="Graficando código NZRI:", font_size = 16))
-        self.graphicGrid.add_widget(Label(text="Es par ?:", font_size = 16))
-        self.parityCheckBox = CheckBox()
-        self.graphicGrid.add_widget(self.parityCheckBox)
-
-        #Create graphic grid second row
         self.graphingButton = Button(text="Graficar:", font_size=16)
         self.graphingButton.bind(on_press = self.graphing) #Bond function
         self.graphicGrid.add_widget(self.graphingButton)
+
+        # Division Label
+        self.graphicGrid.add_widget(Label(text="___________________________________________________________________________________________________________________________________________________________",
+                              font_size = 16))
+        self.graphicGrid.add_widget(Label(text="___________________________________________________________________________________________________________________________________________________________",
+                              font_size = 16))
+
+        #Create graphic grid second row
+        self.graphicGrid.add_widget(Label(text="Es par ?:", font_size = 16))
+        self.parityCheckBox = CheckBox()
+        self.graphicGrid.add_widget(self.parityCheckBox)
 
         self.add_widget(self.graphicGrid) # Add graphicGrid to MyGridLayout
         
@@ -109,13 +117,36 @@ class MyGridLayout(GridLayout):
 
     # Graphing method
     def graphing(self, instance):
+        global graficoActivo
         checkParityValue = self.parityCheckBox.active
-        print (checkParityValue)
+        print(checkParityValue)
+        graficoActivo = True
+        MyApp().stop()
+        #self.add_widget(prueba.IngresarNumero())
+
+
 
         
 class MyApp(App):
     def build(self):
-        return MyGridLayout()
-    
-if __name__ == '__main__':
-    MyApp().run()
+        if graficoActivo == False:
+            return MyGridLayout()
+        else:
+            return IngresarNumero()
+
+MyApp().run()
+
+def prueba():
+    print("Hola")
+    GraphApp.run()
+
+MyApp().run()
+
+
+
+
+
+
+
+
+
