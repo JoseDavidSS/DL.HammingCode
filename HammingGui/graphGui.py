@@ -97,13 +97,12 @@ class IngresarNumero(GridLayout):
         guiHamming.MyApp().stop()
 
 
+#class GraphApp(App):
+#    def build(self):
+#        return IngresarNumero()
 
-class GraphApp(App):
-    def build(self):
-        return IngresarNumero()
 
-
-if __name__ == '__main__':
-    GraphApp().run()
+#if __name__ == '__main__':
+#    GraphApp().run()
 
 

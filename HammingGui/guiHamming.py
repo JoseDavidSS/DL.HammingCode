@@ -8,11 +8,13 @@ from kivy.uix.checkbox import CheckBox
 from kivy.core.window import Window
 
 from HammingGui import data
+from HammingLogic import binConvertions
 from graphGui import *
+from tablesGui import *
 
 
 # Set the app size
-Window.size = (900,500) #(x,y) lengths
+Window.size = (900,450) #(x,y) lengths
 
 
 class MyGridLayout(GridLayout):
@@ -108,36 +110,50 @@ class MyGridLayout(GridLayout):
                               font_size = 16))
 
         #Create graphic grid second row
-        self.graphicGrid.add_widget(Label(text="Es par ?:", font_size = 16))
-        self.parityCheckBox = CheckBox()
-        self.graphicGrid.add_widget(self.parityCheckBox)
+        self.graphicGrid.add_widget(Label(text="Código Hamming:", font_size = 16))
+        self.tabulateButton = Button(text="Tabular", font_size=16)
+        self.tabulateButton.bind(on_press=self.tabs)  # Bond function
+        self.graphicGrid.add_widget(self.tabulateButton)
 
         self.add_widget(self.graphicGrid) # Add graphicGrid to MyGridLayout
+
+        # Division Label
+        self.graphicGrid.add_widget(Label(text="___________________________________________________________________________________________________________________________________________________________",
+                              font_size = 16))
+        self.graphicGrid.add_widget(Label(text="___________________________________________________________________________________________________________________________________________________________",
+                              font_size = 16))
+
+
         
     # Converting method   
     def press(self, instance):
         binNum = self.binaryNumber.text # tipo de dato string
     
-        self.decimalNumberValue.text = "234532" #convertirDecimal(binNum)
-        self.octalNumberValue.text = "57777"    #convertirOctal(binNum)
-        self.hexaNumberValue.text = "11AB3"     #convertirHexadecimal(binNum)
-        print("Llegué")
+        self.decimalNumberValue.text = binConvertions.bin2dec(binNum) #convertirDecimal(binNum)
+        self.octalNumberValue.text = binConvertions.bin2oct(binNum)    #convertirOctal(binNum)
+        self.hexaNumberValue.text = binConvertions.bin2hex(binNum)   #convertirHexadecimal(binNum)
 
     # Graphing method
     def graphing(self, instance):
-        checkParityValue = self.parityCheckBox.active
-        print(checkParityValue)
         data.graficoActivo = 1
         MyApp().stop()
         #self.add_widget(prueba.IngresarNumero())
 
-class MyApp(App):
+    # Creating tabs
+    def tabs(self, instance):
+        data.graficoActivo = 2
+        MyApp().stop()
+
+class MyApp(MDApp):
     def build(self):
+        self.theme_cls.theme_style = "Dark"
         print(data.graficoActivo)
         if data.graficoActivo == 0:
             return MyGridLayout()
-        else:
+        elif data.graficoActivo == 1:
             return IngresarNumero()
+        else:
+            return tablesGrid()
 
 if __name__ == '__main__':
     MyApp().run()
