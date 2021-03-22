@@ -1,4 +1,7 @@
-paridad = True
+paridad = False
+print("paridad:")
+print(paridad)
+
 def checkParidad(p):
     global paridad
     suma = 0
@@ -18,6 +21,8 @@ def checkParidad(p):
 
 def hamming(entrada):
     data = list(entrada)
+
+
 
     mat = [["" for y in range(17)] for x in range(7)]
     d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12 = [i for i in data]
@@ -68,7 +73,7 @@ def hamming(entrada):
 
     cont = 0
     for j in mat[6]:
-        if j == None:
+        if j == "":
             mat[6][cont] = mat[0][cont]
         cont += 1
 
@@ -88,6 +93,8 @@ def errorCheckForP1 (hammingData):
     totalParity += hammingData[12]
     totalParity += hammingData[14]
     totalParity += hammingData[16]
+
+    print(totalParity)
 
     if paridad == True:
         if totalParity%2 == 0:
@@ -236,8 +243,7 @@ def calcularBitErroneo (hammingData):
     bitErroneo.append(errorCheckForP3(hammingData))
     bitErroneo.append(errorCheckForP4(hammingData))
     bitErroneo.append(errorCheckForP5(hammingData))
-
-    print(bitErroneo)
+    return bitErroneo
 
 def cambiarBit (posicion):
     

@@ -28,7 +28,7 @@ class IngresarNumero(GridLayout):
             col_default_width = 300)
 
         self.graphBody.cols = 3
-        self.graphBody.add_widget(Label(text='Ingrese su número binario:', size_hint=(0.2, 0.1), pos=(0, 0)))
+        self.graphBody.add_widget(Label(text='Ingrese su número binario (12 bits):', size_hint=(0.2, 0.1), pos=(0, 0)))
         self.binaryNumberGraph = TextInput(multiline=False, font_size = 16)
         self.graphBody.add_widget(self.binaryNumberGraph)
 
@@ -73,21 +73,24 @@ class IngresarNumero(GridLayout):
         self.plotGrid.add_widget(self.volverGrid)
 
     def press(self, instance):
-        print("entré")
-        plt.clf()
-        self.plotGrid.remove_widget(self.plot)
-        self.plotGrid.remove_widget(self.volverGrid)
-        x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        y = self.binaryNumberGraph.text
-        print("dato y:")
-        print(y)
-        y = [int(x) for x in y]
-        plt.step(x, y)
-        plt.xticks(x)
-        plt.yticks([0, 1])
-        self.plot = FigureCanvasKivyAgg(plt.gcf())
-        self.plotGrid.add_widget(self.plot)
-        self.plotGrid.add_widget(self.volverGrid)
+        if len(self.binaryNumberGraph.text) != 12:
+            print("El número debe ser de 12 bits")
+        else:
+            print("entré")
+            plt.clf()
+            self.plotGrid.remove_widget(self.plot)
+            self.plotGrid.remove_widget(self.volverGrid)
+            x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            y = self.binaryNumberGraph.text
+            print("dato y:")
+            print(y)
+            y = [int(x) for x in y]
+            plt.step(x, y)
+            plt.xticks(x)
+            plt.yticks([0, 1])
+            self.plot = FigureCanvasKivyAgg(plt.gcf())
+            self.plotGrid.add_widget(self.plot)
+            self.plotGrid.add_widget(self.volverGrid)
 
 
     def volverPrincipal(self, instance):

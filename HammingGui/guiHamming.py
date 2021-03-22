@@ -127,11 +127,17 @@ class MyGridLayout(GridLayout):
         
     # Converting method   
     def press(self, instance):
+
         binNum = self.binaryNumber.text # tipo de dato string
-    
-        self.decimalNumberValue.text = binConvertions.bin2dec(binNum) #convertirDecimal(binNum)
-        self.octalNumberValue.text = binConvertions.bin2oct(binNum)    #convertirOctal(binNum)
-        self.hexaNumberValue.text = binConvertions.bin2hex(binNum)   #convertirHexadecimal(binNum)
+
+        for i in binNum:
+            if int(i) == 0 or int(i)==1:
+                pass
+            else:
+                return False
+        self.decimalNumberValue.text = binConvertions.bin2dec(binNum)  # convertirDecimal(binNum)
+        self.octalNumberValue.text = binConvertions.bin2oct(binNum)  # convertirOctal(binNum)
+        self.hexaNumberValue.text = binConvertions.bin2hex(binNum)  # convertirHexadecimal(binNum)
 
     # Graphing method
     def graphing(self, instance):
